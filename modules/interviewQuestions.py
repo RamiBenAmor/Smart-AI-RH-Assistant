@@ -55,15 +55,7 @@ Job Description:
         return f"❌ Error: {e}"
 
 
-# Example usage
-cv_text = (
-        "The candidate has 4 years of software development experience, including a chatbot "
-        "project developed with Python . They worked on NLP pipelines, intent recognition, "
-        "and external API integration."
-    )
-jd_text = (
-        "AI Engineer position requiring experience in NLP, chatbot development, and API integration."
-    )
-questions = generate_interview_questions(cv_text, jd_text)
-with open("interview.txt", "w", encoding="utf-8") as f:
-    f.write(questions)
+def generate_interview_questionspdf(cv_text, jd_text):
+    questions=generate_interview_questions(cv_text,jd_text)
+    savetopdf(questions,"questions.txt")
+
