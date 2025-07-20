@@ -6,8 +6,8 @@ from .preprocessing import preprocess_pdf
 import os
 import plotly.express as px
 from datetime import datetime
-
-
+from .explain_score import Explanationpdf, explain_cv_score
+from .interviewQuestions import generate_interview_questionspdf
 def categorize_score(score):
     if score >= 0.8:
         return "Excellent Match"
@@ -157,11 +157,20 @@ def display_ALL(cvs, jds):
                 with col1:
                     if st.button(f"🧠 Explain Matching — {cv_name}", key=f"explain_{cv_name}_{job_name}"):
                         st.info("🔍 Explication: Ce bouton affichera une analyse détaillée des points de correspondance entre le CV et le poste.")
-
+                        cv_path = os.path.join("C:\\Users\\ramib\\OneDrive\\Bureau\\CV_RH\\uploads\\cv", cv_name)
+                        jd_path = os.path.join("C:\\Users\\ramib\\OneDrive\\Bureau\\CV_RH\\uploads\\job_descriptions", job_name)
+                        cv_text = preprocess_pdf(cv_path)
+                        jd_text = preprocess_pdf(jd_path) 
+                        result = match_cv_to_jd(cv_name, jd_name, cv_text, jd_text)
+                        Explanationpdf(result["FullTextSimilarity"],result["SkillSimilarity"],result["TitleSimilarity"],result["ExperienceSimilarity"],extract_section(cv_text, "Skills"),extract_section(jd_text, "Skills"))
                 with col2:
                     if st.button(f"❓ Generate Questions — {cv_name}", key=f"questions_{cv_name}_{job_name}"):
-                        st.success("📋 Questions générées :\n1. Pourquoi avez-vous utilisé [Tech] ?\n2. Quelles difficultés avez-vous rencontrées dans ce projet ?")
-
+                        cv_path = os.path.join("C:\\Users\\ramib\\OneDrive\\Bureau\\CV_RH\\uploads\\cv", cv_name)
+                        jd_path = os.path.join("C:\\Users\\ramib\\OneDrive\\Bureau\\CV_RH\\uploads\\job_descriptions", job_name)
+                        cv_text = preprocess_pdf(cv_path)
+                        jd_text = preprocess_pdf(jd_path) 
+                        generate_interview_questionspdf(cv_text,jd_text)    
+                      
                 with col3:
                     with st.form(key=f"schedule_form_{cv_name}_{job_name}"):
                         st.markdown("📅 **Planifier un entretien**")
