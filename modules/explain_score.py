@@ -44,5 +44,13 @@ Please explain why the CV received this score based on the job description and s
         return chat_completion.choices[0].message.content.strip()
     except Exception as e:
         return f"❌ Error: {e}"
-
+def Explanationpdf(full_text_similarity,
+    skill_similarity,
+    title_similarity,
+    experience_similarity,
+    cv_skills,
+    jd_skills):
+    explanation=explain_cv_score(full_text_similarity,skill_similarity,title_similarity,experience_similarity,cv_skills,jd_skills)
+    savetopdf(explanation,"explanation.txt")
+    
     
