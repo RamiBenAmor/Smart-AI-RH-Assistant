@@ -6,6 +6,9 @@ from googleapiclient.discovery import build
 from mcp_use import MCPClient, MCPAgent
 from langchain_openai import ChatOpenAI
 import time
+from fastapi import FastAPI, Request
+
+app= FastAPI()
 def create_event(start_iso, end_iso, attendees_emails, summary="Meeting"):
     creds = Credentials(
         token=None,
@@ -114,7 +117,14 @@ def format_email_body(start_iso, end_iso, meet_link, accepted=True):
             "Best regards,"
         )
     return body
-async def main():
+@app.post("/email-meet")
+async def email_meet(request:Request):
+    data = await request.json()
+     # Extraction des champs de la requête
+    start_iso = data.get("start_iso", "2025-07-22T15:00:00+01:00")
+    end_iso = data.get("end_iso", "2025-07-22T16:00:00+01:00")
+    attendees_emails = data.get("attendees_emails")
+    accepted = data.get("accepted", True)
     config = {
   "mcpServers": {
     "google-workspace": {
@@ -136,16 +146,14 @@ async def main():
     agent = MCPAgent(llm=llm, client=client, max_steps=10)
     # Créer l'événement
     meet_link = create_event(
-        start_iso="2025-07-22T15:00:00+01:00",
-        end_iso="2025-07-22T16:00:00+01:00",
-        attendees_emails=["xxxx.com"]
+        start_iso=start_iso,
+        end_iso=end_iso,
+        attendees_emails=attendees_emails
     )
 
     # Envoyer l'e-mail avec le lien Meet
-    email_body = format_email_body("2025-07-22T15:00:00+01:00","2025-07-22T16:00:00+01:00",meet_link,False)
-    result = await send_email(agent, to_email="xxxx@gmail.com", body=email_body, meet_link=meet_link)
+    email_body = format_email_body(start_iso,end_iso,meet_link,accepted)
+    result = await send_email(agent, to_email=attendees_emails, body=email_body, meet_link=meet_link)
 
-    print("Résultat:", result)
-if __name__ == "__main__":
-    asyncio.run(main())
+    return {"result": result}
 
