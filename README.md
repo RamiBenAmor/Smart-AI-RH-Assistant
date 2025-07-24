@@ -17,3 +17,8 @@ This project uses the external module mcp-use for enhanced model integration and
 
 🔧 How to install
 Before running this project, check  the MCP-Use repository: https://github.com/mcp-use/mcp-use , follow the instructions to downoald it for this project
+
+This project also uses google-workspace-mcp-server
+🔧 How to install
+Before running this project, check  the MCP-Use repository:https://github.com/epaproditus/google-workspace-mcp-server , follow the instructions to downoald it for this project
+
