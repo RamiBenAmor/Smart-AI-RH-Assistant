@@ -1,4 +1,5 @@
 import PyPDF2  
+import fitz  
 import nltk
 import re
 from nltk.corpus import stopwords
