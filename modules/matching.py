@@ -101,7 +101,7 @@ def display_Matching(cvfilepath, jdfilepath):
         display_pdf(cvfilepath)
 def display_ALL(cvs, jds):
     st.title("📊 Excellent Matching CV ↔ Job Description")
-
+    count = 0
     data = []
 
     for cv_path in cvs:
@@ -155,7 +155,7 @@ def display_ALL(cvs, jds):
                 col1, col2, col3 = st.columns(3)
 
                 with col1:
-                    if st.button(f"🧠 Explain Matching — {cv_name}", key=f"explain_{cv_name}_{job_name}"):
+                    if st.button(f"explain_{count}_{cv_name}_{job_name}"):
                         st.info("🔍 Explication: Ce bouton affichera une analyse détaillée des points de correspondance entre le CV et le poste.")
                         cv_path = os.path.join("C:\\Users\\ramib\\OneDrive\\Bureau\\CV_RH\\uploads\\cv", cv_name)
                         jd_path = os.path.join("C:\\Users\\ramib\\OneDrive\\Bureau\\CV_RH\\uploads\\job_descriptions", job_name)
@@ -164,7 +164,7 @@ def display_ALL(cvs, jds):
                         result = match_cv_to_jd(cv_name, jd_name, cv_text, jd_text)
                         Explanationpdf(result["FullTextSimilarity"],result["SkillSimilarity"],result["TitleSimilarity"],result["ExperienceSimilarity"],extract_section(cv_text, "Skills"),extract_section(jd_text, "Skills"))
                 with col2:
-                    if st.button(f"❓ Generate Questions — {cv_name}", key=f"questions_{cv_name}_{job_name}"):
+                    if st.button(f"❓ Generate Questions_{count}_{cv_name}_{job_name}"):
                         cv_path = os.path.join("C:\\Users\\ramib\\OneDrive\\Bureau\\CV_RH\\uploads\\cv", cv_name)
                         jd_path = os.path.join("C:\\Users\\ramib\\OneDrive\\Bureau\\CV_RH\\uploads\\job_descriptions", job_name)
                         cv_text = preprocess_pdf(cv_path)
@@ -172,12 +172,43 @@ def display_ALL(cvs, jds):
                         generate_interview_questionspdf(cv_text,jd_text)    
                       
                 with col3:
-                    with st.form(key=f"schedule_form_{cv_name}_{job_name}"):
-                        st.markdown("📅 **Planifier un entretien**")
-                        date = st.date_input("Date", key=f"date_{cv_name}_{job_name}")
-                        time = st.time_input("Heure", key=f"time_{cv_name}_{job_name}")
-                        submit = st.form_submit_button("Envoyer Mail")
-                        if submit:
-                            st.success(f"✅ Mail d'entretien programmé le {date} à {time} pour {cv_name}")
+                    with st.form(key=f"schedule_form_{count}_{cv_name}_{job_name}"):
+                      url = "http://localhost:8000/email_meet"
+                      st.markdown("📅 **Plan interview**")
+                      cv_path = os.path.join("C:\\Users\\ramib\\OneDrive\\Bureau\\CV_RH\\uploads\\cv", cv_name)
+                      cv_text = preprocess_pdf(cv_path)
+                      email=extract_email_from_cv(cv_text)
+        # Choisir date et heure
+                      date = st.date_input("Date", key=f"date_{cv_name}_{job_name}")
+                      time = st.time_input("Heure", key=f"time_{cv_name}_{job_name}")
+                      submit = st.form_submit_button("Envoyer Mail")
+                      if submit:
+            # Combinaison date + time en datetime
+                         dt_start_naive = datetime.combine(date, time)
 
+            # Ajout du fuseau horaire (exemple : Europe/Tunis = UTC+1)
+                         tz = pytz.timezone("Africa/Tunis")
+                         dt_start = tz.localize(dt_start_naive)
+
+            # Durée de l'entretien (1 heure ici)
+                         dt_end = dt_start + timedelta(hours=2)
+
+            # Conversion en ISO 8601 (avec timezone +01:00)
+                         start_iso = dt_start.isoformat()
+                         end_iso = dt_end.isoformat()
+
+                         payload = {
+                "start_is-o": start_iso,
+                "end_iso": end_iso,
+                "attendees_emails": [email],
+                "accepted": True
+            }
+
+                         try:
+                            response = requests.post(url, json=payload)
+                            response.raise_for_status()  # pour attraper les erreurs
+                            st.success(f"✅ Mail d'entretien programmé le {start_iso} pour {cv_name}")
+                         except requests.exceptions.RequestException as e:
+                              st.error(f"❌ Erreur lors de l'envoi : {e}")
+                count+=1
                 st.markdown("---")
