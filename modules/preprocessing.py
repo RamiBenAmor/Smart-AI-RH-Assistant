@@ -6,15 +6,12 @@ nltk.download('punkt')
 nltk.download('stopwords') 
 def load_text(filepath):
     text = ""
-
-    # Ouvre le fichier PDF en lecture binaire
-    with open(filepath, "rb") as file:
-        reader = PyPDF2.PdfReader(file)  # ✅ PdfReader, pas .load
-
-        # Itère sur chaque page et ajoute son texte
-        for page in reader.pages:
-            text += page.extract_text()
-
+    try:
+        with fitz.open(filepath) as doc:
+            for page in doc:
+                text += page.get_text()
+    except Exception as e:
+        print(f"Error while reading PDF: {e}")
     return text
 ALLOWED_INSIDE_TOKENS = r'+#\.\-/'
 stop_words = set(stopwords.words('english'))
