@@ -1,3 +1,4 @@
+import requests
 import streamlit as st
 import os
 import sys
@@ -33,63 +34,6 @@ def save_uploaded_pdf(uploaded_file, folder_path):
     with open(save_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
     return save_path
-
-# --- Upload des CVs ---
-st.subheader("⬆️ Ajouter de nouveaux CVs")
-uploaded_cvs = st.file_uploader(
-    "📄 Upload un ou plusieurs CVs (PDF uniquement)",
-    type=["pdf"],
-    accept_multiple_files=True,
-    key="upload_cvs"
-)
-
-uploaded_cv_paths = []
-if uploaded_cvs and not st.session_state.cv_uploaded:
-    for file in uploaded_cvs:
-        path = save_uploaded_pdf(file, CV_STORAGE_FOLDER)
-        uploaded_cv_paths.append(path)
-    st.session_state.cv_uploaded = True
-    st.success(f"{len(uploaded_cv_paths)} CV(s) ajouté(s) avec succès ✅")
-
-# --- Affichage des CVs existants ---
-st.subheader("📂 CVs disponibles")
-existing_cvs = list_pdfs(CV_STORAGE_FOLDER)
-
-if existing_cvs:
-    for cv_filename in existing_cvs:
-        col1, col2 = st.columns([3, 1])
-        with col1:
-            st.markdown(f"**📄 {cv_filename}**")
-        with col2:
-            cv_path = os.path.join(CV_STORAGE_FOLDER, cv_filename)
-            with open(cv_path, "rb") as f:
-                st.download_button(
-                    label="⬇️ Télécharger",
-                    data=f.read(),
-                    file_name=cv_filename,
-                    mime="application/pdf",
-                    key="download_cv_" + cv_filename
-                )
-else:
-    st.info("Aucun CV disponible.")
-
-st.markdown("---")
-# --- Search CVs from email ---
-st.subheader("🔍 Search CVs in your Gmail")
-days = st.number_input("Select how many days back to search: ", min_value=1, max_value=30, value=3, step=1)
-
-if st.button("🔍 Search and Download CVs from Email"):
-    with st.spinner("Searching emails and downloading PDFs..."):
-        try:
-            response = requests.post("http://localhost:8000/searchAndDownload", json={"days": days})
-            if response.status_code == 200:
-                st.success("PDFs downloaded successfully from your mailbox!")
-            else:
-                st.error(f"Failed to download from email. Status code: {response.status_code}")
-        except Exception as e:
-            st.error(f"Error occurred: {e}")
-
-st.markdown("---")
 # --- Upload des JDs ---
 st.subheader("⬆️ Ajouter de nouvelles Job Descriptions")
 uploaded_jds = st.file_uploader(
@@ -131,6 +75,63 @@ else:
 
 st.markdown("---")
 
+# --- Upload des CVs ---
+st.subheader("⬆️ Ajouter de nouveaux CVs")
+uploaded_cvs = st.file_uploader(
+    "📄 Upload un ou plusieurs CVs (PDF uniquement)",
+    type=["pdf"],
+    accept_multiple_files=True,
+    key="upload_cvs"
+)
+
+uploaded_cv_paths = []
+if uploaded_cvs and not st.session_state.cv_uploaded:
+    for file in uploaded_cvs:
+        path = save_uploaded_pdf(file, CV_STORAGE_FOLDER)
+        uploaded_cv_paths.append(path)
+    st.session_state.cv_uploaded = True
+    st.success(f"{len(uploaded_cv_paths)} CV(s) ajouté(s) avec succès ✅")
+
+# --- Search CVs from email ---
+st.subheader("🔍 Search CVs in your Gmail")
+days = st.number_input("Select how many days back to search: ", min_value=1, max_value=30, value=3, step=1)
+
+if st.button("🔍 Search and Download CVs from Email"):
+    with st.spinner("Searching emails and downloading PDFs..."):
+        try:
+            response = requests.post("http://localhost:8000/searchAndDownload", json={"days": days})
+            if response.status_code == 200:
+                st.success("PDFs downloaded successfully from your mailbox!")
+            else:
+                st.error(f"Failed to download from email. Status code: {response.status_code}")
+        except Exception as e:
+            st.error(f"Error occurred: {e}")
+
+st.markdown("---")
+
+# --- Affichage des CVs existants ---
+st.subheader("📂 CVs disponibles")
+existing_cvs = list_pdfs(CV_STORAGE_FOLDER)
+
+if existing_cvs:
+    for cv_filename in existing_cvs:
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.markdown(f"**📄 {cv_filename}**")
+        with col2:
+            cv_path = os.path.join(CV_STORAGE_FOLDER, cv_filename)
+            with open(cv_path, "rb") as f:
+                st.download_button(
+                    label="⬇️ Télécharger",
+                    data=f.read(),
+                    file_name=cv_filename,
+                    mime="application/pdf",
+                    key="download_cv_" + cv_filename
+                )
+else:
+    st.info("Aucun CV disponible.")
+
+st.markdown("---")
 # --- Matching des CVs avec les JDs ---
 st.subheader("📊 Résultat du Matching CV ↔ JD")
 
