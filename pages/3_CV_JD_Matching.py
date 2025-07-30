@@ -74,7 +74,22 @@ else:
     st.info("Aucun CV disponible.")
 
 st.markdown("---")
+# --- Search CVs from email ---
+st.subheader("🔍 Search CVs in your Gmail")
+days = st.number_input("Select how many days back to search: ", min_value=1, max_value=30, value=3, step=1)
 
+if st.button("🔍 Search and Download CVs from Email"):
+    with st.spinner("Searching emails and downloading PDFs..."):
+        try:
+            response = requests.post("http://localhost:8000/searchAndDownload", json={"days": days})
+            if response.status_code == 200:
+                st.success("PDFs downloaded successfully from your mailbox!")
+            else:
+                st.error(f"Failed to download from email. Status code: {response.status_code}")
+        except Exception as e:
+            st.error(f"Error occurred: {e}")
+
+st.markdown("---")
 # --- Upload des JDs ---
 st.subheader("⬆️ Ajouter de nouvelles Job Descriptions")
 uploaded_jds = st.file_uploader(
