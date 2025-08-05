@@ -49,21 +49,21 @@ Python • Streamlit • FastAPI • AI Agents • Model Context Protocol (MCP) 
 #### 2. Create and activate a virtual environment for MCP (Python 3.13):
 
 ```powershell
-cd C:\Users\ramib\OneDrive\Bureau\CV_RH\functions\mcp-use
+cd Smart-AI-RH-Assistant\functions\mcp-use
 .\mcp_env\Scripts\Activate.ps1
 ```
 
 Once activated:
 
 ```powershell
-cd C:\Users\ramib\OneDrive\Bureau\CV_RH\functions
+cd  Smart-AI-RH-Assistant\functions
 uvicorn main:app --reload
 ```
 
 #### 3. In a separate terminal, launch the frontend (Python 3.10):
 
 ```powershell
-cd C:\Users\ramib\OneDrive\Bureau\CV_RH\frontend
+cd Smart-AI-RH-Assistant
 streamlit run app.py
 ```
 
