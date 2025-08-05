@@ -78,6 +78,14 @@ streamlit run app.py
 > ✅ Make sure to configure Gmail access and API keys if email fetching is used.
 
 ---
+### 🔧 Modifications to `google-workspace-mcp-server`
+
+I made a modification to the `get-refresh-token.js` file of the [google-workspace-mcp-server] project.  
+Specifically, I added the following scope:
+
+'https://www.googleapis.com/auth/gmail.readonly'
+📌 Reason:
+This scope was added to allow the application to read incoming emails, enabling the automatic detection of new job applications via Gmail.
 
 
 ## 📎 Demo
