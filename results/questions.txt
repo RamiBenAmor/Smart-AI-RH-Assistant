@@ -1,0 +1,45 @@
+### General Questions:
+1. Can you give us an overview of your educational background and what motivated you to pursue a degree in computer engineering?
+2. How has your experience as a final-year computer science engineering student prepared you for an internship in AI and NLP?
+
+### Project-Specific Questions:
+
+#### Chatbot Agent Development (Intech Internship)
+3. Can you describe the chatbot agent project you developed during your internship at Intech? What were the main objectives of this project?
+4. You mentioned that the chatbot had two main phases: data extraction and QA fine-tuning. Can you elaborate on the technologies you used for each phase and the reasoning behind your choices?
+5. What challenges did you encounter while extracting structured data for the chatbot, and how did you address them?
+6. How did you ensure that the QA agent provided context-aware answers? Can you discuss any specific techniques or models you employed?
+7. What were the results of the chatbot's implementation? How did you measure its effectiveness?
+
+#### Inventory Management Web App (Medimix Nutrisud)
+8. Can you walk us through the web app you developed for inventory management? What were the key features you implemented?
+9. You conducted a SWOT analysis for this project. What were the main findings, and how did they influence your development process?
+10. What technologies did you use for the web app, and why did you choose them over other options?
+
+#### Smart AI HR Assistant
+11. In your project for the Smart AI HR Assistant, how did you automate the interview scheduling process? What challenges did you face in this automation?
+12. You utilized various technologies like FastAPI and Langchain. Can you explain how you integrated these technologies into your project?
+13. How did you ensure that the CV classification and candidate matching were accurate? What metrics did you use to evaluate the system's performance?
+
+#### Educational Chatbot (Smart-Learn Assistant)
+14. Can you describe the educational chatbot you built? What specific functionalities did it provide to users?
+15. You mentioned using RAG for generating quizzes and summarizing content. Can you explain how you implemented this technique in your project?
+16. What was your approach to handling user inputs and ensuring the chatbot provided relevant responses?
+
+#### Food Delivery System Chatbot
+17. In the food delivery system project, how did you handle natural language inputs from users? What technologies did you use for this?
+18. Can you discuss the integration of Dialogflow in your chatbot? What advantages did it provide for the project?
+
+### Technical Skills and Knowledge
+19. You have experience with various Python libraries and frameworks. Can you discuss your proficiency with TensorFlow and PyTorch, and how you have applied them in your projects?
+20. How familiar are you with large language models (LLMs) and retrieval-augmented generation (RAG) techniques? Can you provide examples of how you have used these in your work?
+21. What strategies do you use for data cleaning and preprocessing in NLP projects? Can you provide a specific example from your experience?
+
+### Behavioral and Contextual Questions
+22. How do you approach teamwork and collaboration in a project setting, especially in a technical environment?
+23. Can you describe a time when you faced a significant challenge during a project? How did you handle it, and what did you learn from the experience?
+24. How do you stay updated with the latest trends and technologies in AI and NLP? Can you share any resources or communities you engage with?
+
+### Closing Questions
+25. How does your background and experience align with the responsibilities outlined in this AI intern position?
+26. What specific skills or knowledge do you hope to gain from this internship, and how do you see it contributing to your career goals?
