@@ -59,7 +59,14 @@ def extract_section(text: str, name: str) -> str:
     pattern = fr"{name}\s*[:\-]?\s*(.*?)(?=\n[A-Z][a-z]|$)"
     match = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
     return match.group(1).strip() if match else ""
-
+def extract_email_from_cv(cv_text):
+    # Regex standard pour détecter les emails
+    email_pattern = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'
+    
+    match = re.search(email_pattern, cv_text)
+    if match:
+        return match.group(0)
+    return None
 def extract_experience_sentences(section: str) -> str:
     keywords = ("experience", "worked", "developed", "led",
                 "managed", "built", "deployed", "implemented")
@@ -87,64 +94,3 @@ def penalize_exp_gap(score: float, exp_gap: int) -> float:
     penalty = math.exp(-0.2 * exp_gap)
     return score * penalty
 
-def match_cv_to_jd(cv_text: str, jd_text: str) -> dict:
-    # Weights according to your request
-    weights = {
-        "full_text": 0.4,
-        "skills": 0.15,
-        "experience": 0.15,
-        "title": 0.3
-    }
-
-    cv_skills = extract_section(cv_text, "Skills")
-    jd_skills = extract_section(jd_text, "Skills")
-    skill_sim = sbert_similarity(cv_skills, jd_skills)
-
-    cv_exp = extract_section(cv_text, "Experience")
-    jd_exp = extract_section(jd_text, "Experience")
-    cv_exp_sent = extract_experience_sentences(cv_exp)
-    jd_exp_sent = extract_experience_sentences(jd_exp)
-    exp_sim = sbert_similarity(cv_exp_sent, jd_exp_sent)
-
-    cv_years = extract_years(cv_exp)
-    jd_years = extract_years(jd_exp)
-    exp_gap = max(jd_years - cv_years, 0)
-
-    title_sim = title_similarity(cv_text, jd_text)
-
-    full_text_sim = compute_sbert_similarity(cv_text, jd_text)
-
-    raw_score = (
-        weights["full_text"] * full_text_sim +
-        weights["skills"] * skill_sim +
-        weights["experience"] * exp_sim +
-        weights["title"] * title_sim
-    )
-
-    final_score = penalize_exp_gap(raw_score, exp_gap)
-
-    return {
-        "MatchingScoreRaw": round(raw_score, 3),
-        "MatchingScorePenalized": round(final_score, 3),
-        "FullTextSimilarity": round(full_text_sim, 3),
-        "SkillSimilarity": round(skill_sim, 3),
-        "ExperienceSimilarity": round(exp_sim, 3),
-        "TitleSimilarity": round(title_sim, 3),
-        "CV_Years": cv_years,
-        "JD_Years": jd_years,
-        "ExperienceGap": exp_gap
-    }
-#TEST
-cv = """
-    Senior Accountant
-    Skills: Financial reporting, SAP, Excel, Tax Compliance
-    Experience: Over 3 years of experience managing accounts, preparing audits and budgets. Worked with SAP for tax reporting.
-    """
-
-jd = """
-    Accountant
-    Skills: Accounting, Tax Reporting, Financial Audits
-    Experience: Candidate must have 5+ years experience in financial statements, budget preparation and using SAP.
-    """
-
-print(match_cv_to_jd(cv, jd))
