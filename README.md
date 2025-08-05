@@ -1,6 +1,6 @@
-# Smart AI HR Assistant (Project in Development)
+# Smart AI HR Assistant 
 
-This project leverages **NLP** and **Machine Learning** to optimize recruitment by automating key tasks such as CV classification, matching with job descriptions, and interview management.
+This project leverages **AI** to optimize recruitment by automating key tasks such as CV classification, matching with job descriptions, and interview management.
 
 ---
 
@@ -82,16 +82,51 @@ All emails shown in the video are invalid and used purely for privacy purposes.
 ## 📂 Repository Structure (Simplified)
 
 ```
-CV_RH/
-├── frontend/               # Streamlit UI
-│   └── app.py
-├── functions/              # API & Agents
-│   ├── main.py             # FastAPI app
-│   ├── classifier.py       # CV classification logic
-│   └── recommender.py      # JD matching & scoring
-├── mcp-use/                # MCP integration (external)
-├── google-workspace-mcp-server/  # Google API agent
-└── README.md
+Smart-AI-RH-Assistant/
+│
+├── .vscode/                # VSCode workspace settings (e.g., debug configs)
+│
+├── functions/              # Core backend logic
+│   ├── __init__.py         # Python package marker
+│   ├── config.json         # Configuration file (API keys, paths)
+│   ├── download_attachment.py  # Fetches CVs from Gmail
+│   ├── download_search.py  # Searches emails by criteria
+│   ├── email_meet.py       # Handles interview scheduling/emails
+│   ├── main.py             # Likely the FastAPI entry point
+│   └── mcp_env/           # MCP agent dependencies
+│
+├── models/                 # ML models and training artifacts
+│   ├── bert/               # Fine-tuned BERT model directory
+│   ├── classification_report1.txt  # Model performance metrics
+│   └── label_encoder.pkl   # Encodes job domains (IT/Finance/etc.)
+│
+├── modules/                # Reusable utility modules
+│   ├── classifier.py       # CV domain classification
+│   ├── cvScore.py          # JD-CV matching/scoring logic
+│   ├── explain_score.py    # Explains match scores to users
+│   ├── interviewQuestions.py  # Generates LLM-powered questions
+│   ├── preprocessing.py    # Cleans CV/JD text
+│   └── saveToTxt.py        # Save in text file
+│
+├── pages/                  # Streamlit UI pages
+│   ├── 1_Home.py          # Landing page
+│   ├── 2_CV_Classifier.py  # CV classification UI
+│   ├── 3_CV_JD_Matching.py # JD matching UI
+│   └── 4_Dashboard.py      # Interview tracking dashboard
+│
+├── results/                # Generated outputs
+│   ├── explanation.txt     # Score breakdowns (for candidates)
+│   └── questions.txt       # Generated interview questions
+│
+├── uploads/                # User-uploaded files
+│   ├── cv/                 # Uploaded CVs (PDF)
+│   └── job_descriptions/   # Uploaded JDs (PDF)
+│
+├── app.py                  # Main Streamlit entry point
+├── clean_resume_data.csv   # Processed CV dataset
+├── README.md               # Project documentation
+├── requirements.txt        # Python dependencies
+└── sent_emails.csv         # Logs of automated emails sent
 ```
 
 ---
