@@ -71,15 +71,10 @@ streamlit run app.py
 
 ---
 
-## ✅ Status
-
-🧪 Project under active development. Contributions, ideas, and feedback are welcome.
-
----
 
 ## 📎 Demo
 
-A short demo video of the platform in action is available.  
+A  demo video of the platform in action is available.  
 All emails shown in the video are invalid and used purely for privacy purposes.
 
 ---
