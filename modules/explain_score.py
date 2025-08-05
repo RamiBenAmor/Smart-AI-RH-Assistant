@@ -1,5 +1,6 @@
 from openai import OpenAI
-
+from .savetotxt import savetotxt
+import streamlit as st
 def explain_cv_score(
     full_text_similarity,
     skill_similarity,
@@ -8,7 +9,7 @@ def explain_cv_score(
     cv_skills,
     jd_skills
 ):
-    client = OpenAI(api_key="xxx")
+    client = OpenAI(api_key="xxxxx")
 
     system_prompt = """You are a recruitment assistant. 
 You receive a candidate CV and a job description.
@@ -51,6 +52,9 @@ def Explanationpdf(full_text_similarity,
     cv_skills,
     jd_skills):
     explanation=explain_cv_score(full_text_similarity,skill_similarity,title_similarity,experience_similarity,cv_skills,jd_skills)
-    savetopdf(explanation,"explanation.txt")
-    
-    
+    savetotxt(explanation,"explanation.txt")
+    with st.expander("🔍 Score Explanation"):
+      st.markdown(
+        f"<div style='font-size: 0.8em; font-family: monospace; white-space: pre-wrap;'>{explanation}</div>",
+        unsafe_allow_html=True
+    )
