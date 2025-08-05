@@ -1,6 +1,8 @@
 from openai import OpenAI 
+import streamlit as st
+from .savetotxt import savetotxt
 def generate_interview_questions(cv_text, jd_text):
-    client = OpenAI(api_key="xx")
+    client = OpenAI(api_key="xxxxxx")
 
     system_prompt = """
 You are a recruitment assistant specialized in technical hiring.
@@ -54,8 +56,12 @@ Job Description:
     except Exception as e:
         return f"❌ Error: {e}"
 
-
-def generate_interview_questionspdf(cv_text, jd_text):
+def generate_interview_questionstxt(cv_text, jd_text):
     questions=generate_interview_questions(cv_text,jd_text)
-    savetopdf(questions,"questions.txt")
-
+    savetotxt(questions,"questions.txt")
+    st.download_button(
+    label="📄 Downoald Questions",
+    data=questions,
+    file_name="questions.txt",
+    mime="text/plain"
+)
