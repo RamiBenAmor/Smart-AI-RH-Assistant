@@ -1,45 +1,51 @@
 import streamlit as st
 
-st.set_page_config(page_title="Smart CV Matcher", page_icon="📂", layout="wide")
+st.set_page_config(page_title="Smart AI HR Assistant", page_icon="📂", layout="wide")
 
-st.title("📂 Smart CV Matcher – ATS Intelligent")
+st.title("Smart AI HR Assistant")
 
 st.markdown(
     """
-### 🎯 Objectif du projet
-Cette application vise à assister les recruteurs dans le traitement de CVs en automatisant deux tâches essentielles :
+### 🎯 Project Objective  
+This application is a smart recruitment platform designed to assist HR teams by automating two essential tasks:
 
-- **Classification** des CVs selon leur domaine (Informatique, Finance, RH, etc.)
-- **Matching intelligent** entre CVs et offres d'emploi grâce à :
-  - Similarité sémantique (SBERT)
-  - Comparaison des compétences, du titre, et de l'expérience
-  - Visualisation claire des scores
+- **Automatic classification** of CVs into professional domains (e.g., IT, Finance, HR)  
+- **Intelligent matching** between CVs and Job Descriptions (JDs), including:  
+  - Personalized scores based on skills, job titles, and experience  
+  - Clear visualization of the best-matching CVs for each JD  
+  - Pie charts displaying the distribution of CVs by job title
 
----
-### 🧭 Navigation
-Utilisez le menu à gauche pour accéder aux différents modules de l'application :
-- 📄 **Upload & Classification** : Chargez des CVs et obtenez leur domaine automatiquement.
-- 🧠 **Matching** : Chargez des Job Descriptions (JDs) et trouvez les CVs les plus pertinents.
-- 📊 **Résultats & Visualisation** : Analysez les scores, filtrez les résultats, et téléchargez les CVs.
+Additionally, the platform streamlines the recruitment process by:  
+- Generating **personalized interview questions**  
+- Offering a **dashboard to track scheduled interviews**  
+- Automating communication by sending **custom interview invitations** and **rejection emails**
 
 ---
-### 👨‍💻 Technologies utilisées
-- **SBERT** pour la similarité sémantique (sentence-transformers)
-- **BERT fine-tuné** pour la classification automatique des CVs
-- **Streamlit** pour l'interface interactive
-- **Scikit-learn**, **NLTK**, **regex** pour les traitements NLP
-- **Joblib / Torch** pour le chargement des modèles
+
+### 🧭 Navigation  
+Use the sidebar menu to access the main modules:  
+
+- 📄 **CV_Classifier**: Upload CVs and automatically classify them into relevant domains.  
+
+- 🧠 **CV_JD_Matching**:  
+  - Upload Job Descriptions (JDs)  
+  - Upload CVs manually *or* fetch them directly from your inbox (filtered by job title)  
+  - The system filters and returns only CVs with a high personalized matching score, based on skills, job titles, experience similarity, and more  
+  - Analyze the distribution of CVs across job descriptions  
+  - View detailed scoring explanations for each match  
+  - Generate tailored interview questions based on the candidate’s CV and the job description  
+  - Schedule interviews and send email invitations  
+  - Automatically send rejection emails to unselected candidates for a specific job description  
+
+- 📅 **Dashboard**: Monitor scheduled interviews, including candidate names, emails, interview dates, CV paths, send dates, and job titles.
 
 ---
-### 📝 Conseils
-- Préparez vos fichiers **CVs en PDF** et **Job Descriptions en PDF**.
-- Pour de meilleurs résultats, veillez à ce que les documents soient bien structurés.
-- L'application supporte le filtrage par score, le téléchargement des résultats, et des visualisations interactives.
+
+### 📝 Recommendations  
+- Ensure your **CVs and JDs are in PDF format** and clearly structured.
 
 ---
-### 📫 Auteur
-Développé par un étudiant en IA, passionné de NLP et d'outils RH intelligents.
 
-> *"Helping recruiters make better decisions, one vector at a time."*
+> *"Making the HR process smarter, faster, and more transparent."*
 """
 )
