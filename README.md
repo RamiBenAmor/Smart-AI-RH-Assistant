@@ -19,7 +19,15 @@ This project leverages **AI** to optimize recruitment by automating key tasks su
 - Generate tailored interview questions using Large Language Models (LLMs).  
 - Schedule interviews and send invitations automatically.  
 - Send rejection emails automatically to unselected candidates.
+✉️ Example of Automated Emails:
 
+🔹 Rejection Email (Software Engineer Position)
+Thank you for your interest. Unfortunately, we regret to inform you that your application has not been accepted for the position of Software Engineer. We wish you the best in your future endeavors.
+Best regards,
+
+🔹 Accepted Interview Email (Software Engineer Position)
+We are pleased to inform you that your application has been accepted for a technical interview for the position of Software Engineer. The interview is scheduled on Sunday 03 August 2025 from 19:15 to 21:15 (Europe/Paris time). Please join the Google Meet using the following link: [meet_link]
+Best regards,
 ### 3. Interview Management
 - Monitor scheduled interviews via a dedicated dashboard showing candidate info, interview dates, CVs, and job titles.
 
