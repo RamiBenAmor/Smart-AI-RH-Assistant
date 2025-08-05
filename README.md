@@ -115,7 +115,7 @@ Smart-AI-RH-Assistant/
 │   └── 4_Dashboard.py      # Interview tracking dashboard
 │
 ├── results/                # Generated outputs
-│   ├── explanation.txt     # Score breakdowns (for candidates)
+│   ├── explanation.txt     # Score breakdowns 
 │   └── questions.txt       # Generated interview questions
 │
 ├── uploads/                # User-uploaded files
