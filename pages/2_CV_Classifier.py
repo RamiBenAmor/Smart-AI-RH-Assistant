@@ -7,7 +7,7 @@ import pandas as pd
 import plotly.express as px
 
 # Dossier local pour stocker les CVs uploadés (persistants sur disque)
-CV_STORAGE_FOLDER = "uploads/cv"
+CV_STORAGE_FOLDER = "C:\\Users\\ramib\\OneDrive\\Bureau\\CV_RH\\uploads\\cv"
 
 # Nettoyer le dossier uploads/cv à chaque lancement (optionnel)
 if os.path.exists(CV_STORAGE_FOLDER):
