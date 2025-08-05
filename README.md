@@ -19,7 +19,7 @@ This project leverages **AI** to optimize recruitment by automating key tasks su
 - Generate tailored interview questions using Large Language Models (LLMs).  
 - Schedule interviews and send invitations automatically.  
 - Send rejection emails automatically to unselected candidates.
-✉️ Example of Automated Emails:
+-✉️ Example of Automated Emails:
 
 🔹 Rejection Email (Software Engineer Position)
 Thank you for your interest. Unfortunately, we regret to inform you that your application has not been accepted for the position of Software Engineer. We wish you the best in your future endeavors.
