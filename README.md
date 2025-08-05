@@ -84,7 +84,7 @@ I made a modification to the `get-refresh-token.js` file of the [google-workspac
 Specifically, I added the following scope:
 
 'https://www.googleapis.com/auth/gmail.readonly'
-📌 Reason:
+-📌 Reason:
 This scope was added to allow the application to read incoming emails, enabling the automatic detection of new job applications via Gmail.
 
 
