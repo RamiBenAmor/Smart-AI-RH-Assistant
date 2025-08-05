@@ -95,7 +95,7 @@ All emails shown in the video are invalid and used purely for privacy purposes.
 
 ---
 
-## 📂 Repository Structure (Simplified)
+## 📂 Repository Structure 
 
 ```
 Smart-AI-RH-Assistant/
