@@ -143,8 +143,9 @@ Smart-AI-RH-Assistant/
 ├── README.md               # Project documentation
 ├── requirements.txt        # Python dependencies
 └── sent_emails.csv         # Logs of automated emails sent
-└──CV_Score_clean.ipynb     # CV_Score
-└──CV_classification.ipynb  #fine tuning ML models for task classification
+└── colab
+    └──CV_Score_clean.ipynb     # CV_Score
+    └──CV_classification.ipynb  #fine tuning ML models for task classification
 
 ```
 
