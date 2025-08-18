@@ -2,7 +2,7 @@
 import os
 
 def savetotxt(text, filename):
-    output_path = "C:\\Users\\ramib\\OneDrive\\Bureau\\CV_RH\\results"
+    output_path = "{Your_Path}\\Smart-AI-RH-Assistant\\results"
     os.makedirs(output_path, exist_ok=True)
 
     full_path = os.path.join(output_path, filename)
@@ -10,3 +10,4 @@ def savetotxt(text, filename):
     # Écriture en UTF-8 pour bien gérer les caractères spéciaux
     with open(full_path, "w", encoding="utf-8") as f:
         f.write(text)
+
