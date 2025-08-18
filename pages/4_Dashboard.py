@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime
 import os
 
-CSV_PATH = "C:\\Users\\ramib\\OneDrive\\Bureau\\CV_RH\\sent_emails.csv"
+CSV_PATH = "{your path}\\Smart-AI-RH-Assistant\\sent_emails.csv"
 # Créer le fichier avec entêtes si vide ou inexistant
 if not os.path.exists(CSV_PATH) or os.path.getsize(CSV_PATH) == 0:
     pd.DataFrame(columns=["Candidate Name", "Email", "Interview Date", "CV Path", "Sent Date","job_title"]).to_csv(CSV_PATH, index=False)
@@ -54,3 +54,4 @@ with st.form("add_entry_form"):
         df.to_csv(CSV_PATH, index=False)
         st.success("✅ Candidate added successfully.")
         #st.rerun()
+
