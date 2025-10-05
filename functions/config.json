@@ -7,7 +7,7 @@
     "resend": {
       "command": "node",
       "args": [
-        "C:/Users/ramib/OneDrive/Bureau/mcp-send-email/build/index.js",
+        "{Your_Path}/mcp-send-email/build/index.js",
         "--key",
         "TYOUR_KEY"
       ]
