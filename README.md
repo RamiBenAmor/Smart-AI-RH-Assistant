@@ -54,6 +54,8 @@ Python • Streamlit • FastAPI • AI Agents • Model Context Protocol (MCP) 
 - [mcp-use](https://github.com/mcp-use/mcp-use)  
 - [google-workspace-mcp-server](https://github.com/epaproditus/google-workspace-mcp-server)
 
+> Note: These are external modules. Please refer to their respective repositories for full license information.
+
 #### 2. Create and activate a virtual environment for MCP (Python 3.13):
 
 ```powershell
