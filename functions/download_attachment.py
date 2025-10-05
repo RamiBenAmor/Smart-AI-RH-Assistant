@@ -1,7 +1,7 @@
 import base64
 import os
 
-def download_attachment(service, user_id, msg_id, save_path='C:\\Users\\ramib\\OneDrive\\Bureau\\CV_RH\\uploads\\cv'):
+def download_attachment(service, user_id, msg_id, save_path='uploads/cv'):
     try:
         # Récupérer le message complet
         message = service.users().messages().get(userId=user_id, id=msg_id, format='full').execute()
@@ -32,4 +32,5 @@ def download_attachment(service, user_id, msg_id, save_path='C:\\Users\\ramib\\O
         print("❌ Aucun fichier PDF trouvé dans cet e-mail.")
 
     except Exception as e:
+
         print(f"❌ Erreur lors du téléchargement de l'attachement : {e}")
