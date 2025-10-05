@@ -36,7 +36,7 @@ config = {
   "mcpServers": {
     "google-workspace": {
       "command": "node",
-      "args": ["C:\\Users\\ramib\\google-workspace-mcp-server\\build\\index.js"],
+      "args": ["{Your_Path}\\google-workspace-mcp-server\\build\\index.js"],
       "env": {
         "GOOGLE_CLIENT_ID": "xxxxxxxxxxx",
         "GOOGLE_CLIENT_SECRET": "xxxxxxxxx",
