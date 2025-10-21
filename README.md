@@ -155,7 +155,7 @@ Smart-AI-RH-Assistant/
 
 ## 📫 Contact
 
-For collaboration or feedback, feel free to connect via [LinkedIn](https://www.linkedin.com/in/rami-ben-amor).
+For collaboration or feedback, feel free to connect via [LinkedIn]([https://www.linkedin.com/in/rami-ben-amor](https://www.linkedin.com/in/rami-ben-amor-1b3375330/)).
 
 ---
 
