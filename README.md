@@ -94,7 +94,7 @@ This scope was added to allow the application to read incoming emails, enabling 
 
 A  demo video of the platform in action is available.  
 All emails shown in the video are invalid and used purely for privacy purposes.
-
+Watch the full demo here: https://lnkd.in/eByvF4b7
 ---
 
 ## 📂 Repository Structure 
